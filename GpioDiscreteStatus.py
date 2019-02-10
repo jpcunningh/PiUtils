@@ -29,7 +29,7 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(args.pin, GPIO.IN, pull_up_down=pull_up_down)
 
-state = GPIO.input(args.pin)
+state = GPIO.input(args.pin[0])
 
 print state
 
