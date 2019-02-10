@@ -16,13 +16,18 @@ print args
 if args.debounce:
     print 'Debounce not implemented'
 
+if args.mode == 'up':
+    pull_up_down = GPIO.PUD_UP
+else:
+    pull_up_down = GPIO.PUD_DOWN
+
 # This is going to let us use the BCM pin numbers.  The number on JuiceBox
 # Zero is labeled
 # according to BCM.  See https://pinout.xyz/ for more details on pinouts.
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(args.pin, GPIO.IN)
+GPIO.setup(args.pin, GPIO.IN, pull_up_down=pull_up_down)
 
 state = GPIO.input(args.pin)
 
