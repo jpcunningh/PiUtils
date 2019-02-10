@@ -11,7 +11,6 @@ parser.add_argument('--pin', nargs=1, type=int, help='GPIO pin number to retriev
 parser.add_argument('--debounce', help='Enable debounce logic', action='store_true')
 
 args = parser.parse_args()
-print args
 
 if args.debounce:
     print 'Debounce not implemented'
