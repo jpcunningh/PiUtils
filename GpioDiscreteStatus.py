@@ -30,7 +30,7 @@ GPIO.setup(args.pin, GPIO.IN, pull_up_down=pull_up_down)
 
 checks = []
 
-for check in range(num_checks+1):
+for check in range(num_checks):
     checks.append(GPIO.input(args.pin[0]))
     if check > 0:
         time.sleep(0.25)
