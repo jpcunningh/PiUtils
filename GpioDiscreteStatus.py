@@ -12,23 +12,29 @@ parser.add_argument('--debounce', help='Enable debounce logic', action='store_tr
 
 args = parser.parse_args()
 
+num_checks = 1
+
 if args.debounce:
-    print 'Debounce not implemented'
+    num_checks = 5
 
 if args.mode == 'up':
     pull_up_down = GPIO.PUD_UP
 else:
     pull_up_down = GPIO.PUD_DOWN
 
-# This is going to let us use the BCM pin numbers.  The number on JuiceBox
-# Zero is labeled
-# according to BCM.  See https://pinout.xyz/ for more details on pinouts.
+# This is going to let us use the BCM pin numbers.
 
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(args.pin, GPIO.IN, pull_up_down=pull_up_down)
 
-state = GPIO.input(args.pin[0])
+checks = []
+
+for check in range(num_checks+1):
+    checks.append(GPIO.input(args.pin[0]))
+
+# Report whichever state had the majority
+state = sum(checks) > (num_checks / 2)
 
 print state
 
