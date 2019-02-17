@@ -32,6 +32,8 @@ checks = []
 
 for check in range(num_checks+1):
     checks.append(GPIO.input(args.pin[0]))
+    if check > 0:
+        time.sleep(0.25)
 
 # Report whichever state had the majority
 state = sum(checks) > (num_checks / 2)
