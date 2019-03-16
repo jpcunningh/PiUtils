@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Packages needed:
+#   libudev-dev
+#   glib2.0
+#   libdbus-1-dev
+#   elfutils
+#   libdw-dev
+#   libical-dev
+#   libreadline-dev
+#   ell-0.17
+#      build from source: https://mirrors.edge.kernel.org/pub/linux/libs/ell/ell-0.17.tar.gz
+#      ./configure --prefix=/usr; make; make install
+
+    ./configure \
+                --enable-debug \
+                --prefix=/usr \
+                --mandir=/usr/share/man \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --enable-tools \
+                --enable-manpages \
+                --enable-backtrace \
+                --enable-testing \
+                --enable-experimental \
+                --enable-deprecated \
+                --enable-nfc \
+                --enable-sap \
+                --enable-sixaxis \
+                --enable-btpclient \
+                --enable-logger \
+                --disable-datafiles $*
+
