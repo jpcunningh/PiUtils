@@ -2,7 +2,11 @@
 
 cd ~
 
-FILE=devel/oref0/bin/oref0-cron-every-minute.sh
+if [ -d src ]; then
+  FILE=src/oref0/bin/oref0-cron-every-minute.sh
+else
+  FILE=devel/oref0/bin/oref0-cron-every-minute.sh
+fi
 
 SED_PATTERN="^.*is_bash_process_running_named oref0-autosens.*$"
 AUTO_ON="if true \&\& ! is_bash_process_running_named oref0-autosens-loop; then"
