@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd ~
+
+FILE=devel/oref0/bin/oref0-cron-every-minute.sh
+
+SED_PATTERN="^.*is_bash_process_running_named oref0-autosens.*$"
+AUTO_ON="if true \&\& ! is_bash_process_running_named oref0-autosens-loop; then"
+AUTO_OFF="if false \&\& ! is_bash_process_running_named oref0-autosens-loop; then"
+
+if [ "$1" == 0 ]; then
+  sed -i "s/${SED_PATTERN}/${AUTO_ON}/" $FILE
+else
+  sed -i "s/${SED_PATTERN}/${AUTO_OFF}/" $FILE
+  echo Sensitivity Ratio was: $(jq .ratio myopenaps/settings/autosens.json)
+  echo \{\"ratio\": $1\} > ~/myopenaps/settings/autosens.json
+fi
+
