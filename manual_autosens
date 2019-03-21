@@ -16,6 +16,13 @@ if [ "$1" == 0 ]; then
   sed -i "s/${SED_PATTERN}/${AUTO_ON}/" $FILE
   echo Auto sensitivity enabled
   echo Current Sensitivity Ratio: $(jq .ratio myopenaps/settings/autosens.json)
+elif [ "$1" == "" ]; then
+  if grep "named oref0-autosens" $FILE | grep -q false; then
+    echo Auto sensititivity disabled
+  else
+    echo Auto sensititivity enabled
+  fi
+  echo Current Sensitivity Ratio: $(jq .ratio myopenaps/settings/autosens.json)
 else
   sed -i "s/${SED_PATTERN}/${AUTO_OFF}/" $FILE
   echo Sensitivity Ratio was: $(jq .ratio myopenaps/settings/autosens.json)
