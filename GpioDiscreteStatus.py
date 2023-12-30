@@ -26,7 +26,7 @@ else:
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(args.pin, GPIO.IN, pull_up_down=pull_up_down)
+GPIO.setup(args.pin[0], GPIO.IN, pull_up_down=pull_up_down)
 
 checks = []
 
